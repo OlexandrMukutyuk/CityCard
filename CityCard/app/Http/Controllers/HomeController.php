@@ -35,7 +35,8 @@ class HomeController extends Controller
         return view('home', ['user' => $user, 'secondTableData' => $secondTableData, 'historyData' => $historyData]);
     }
 
-    public function welcome(){
+    public function welcome()
+    {
         return view('welcome');
     }
 }
