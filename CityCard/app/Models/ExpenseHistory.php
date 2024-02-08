@@ -10,7 +10,7 @@ class ExpenseHistory extends Model
 {
     use HasFactory;
 
-    public function ticket_type()
+    public function ticketType()
     {
         return $this->belongsTo(TicketType::class, 'ticket_type_id');
     }

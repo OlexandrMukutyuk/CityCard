@@ -12,19 +12,17 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-
-    public function index(){
-
+    public function index()
+    {
         $ticket_type_Data = TicketType::all();
-
         return view("index_admin", ['ticket_type' => $ticket_type_Data]);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $ticketType = TicketType::find($id);
 
         if (!$ticketType) {
-
             return redirect()->route('index_admin')->with('error', 'Запис не знайдено.');
         }
 
@@ -33,19 +31,19 @@ class AdminController extends Controller
         return redirect()->route('index_admin')->with('success', 'Запис успішно видалено.');
     }
 
-    public function update($id) {
+    public function update($id)
+    {
         $ticketType = TicketType::find($id);
 
         if (!$ticketType) {
-
             return redirect()->route('index_admin')->with('error', 'Запис не знайдено.');
         }
         //dd($ticketType);
         return view('admin/update', ['ticketType' => $ticketType]);
-
     }
 
-    public function update_confirm($id){
+    public function updateConfirm($id)
+    {
         $data = request()->only(['bus_type', 'cost', 'city']);
 
         $validator = Validator::make($data, [
@@ -69,11 +67,13 @@ class AdminController extends Controller
         return redirect()->route('index_admin')->with('success', 'Запис оновлено успішно.');
     }
 
-    public function create(){
+    public function create()
+    {
         return view('admin/create_ticket');
     }
 
-    public function create_confirm(){
+    public function createConfirm()
+    {
         $data = request()->only(['bus_type', 'cost', 'City']);
 
         TicketType::create($data);
@@ -81,3 +81,4 @@ class AdminController extends Controller
         return redirect()->route('index_admin')->with('success', 'Новий запис створено успішно.');
     }
 }
+
